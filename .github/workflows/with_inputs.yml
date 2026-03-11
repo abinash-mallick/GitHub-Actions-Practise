@@ -1,0 +1,41 @@
+name: Actions custom inputs
+on:
+ workflow_dispatch:
+   inputs:
+    environment:
+       description: 'Providing the environment'
+       required: true
+       default: 'dev'
+       type: choice
+       options:
+       - dev
+       - test
+       - prod
+
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Build the code
+      run: echo "Build the code"
+      shell: bash
+      
+
+ test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: test the code
+      run: echo "Testing the code"
+      shell: bash
+    needs: [build]
+
+ deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy the code
+      run: echo "deploy the code"
+      shell: bash
+    needs: [build,test]
+         
+       
+       
