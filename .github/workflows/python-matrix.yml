@@ -1,0 +1,24 @@
+name: Python Lint
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v4
+
+        - name: setup python
+          uses: actions/setup-python@v6
+          with:
+                python-version: '3.13'
+
+        - name: Install python dependencies
+          run: pip install -r requirements.txt
+          shell: bash
+
+        - name: Run linter
+          run: pylint app.py
