@@ -1,0 +1,7 @@
+version: "3.18"
+
+services:
+  web:
+   image: ${{ DOCKERHUB_USERNAME }}/actions-app:main
+   ports:
+    - "80:80"
