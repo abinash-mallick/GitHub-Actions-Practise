@@ -4,4 +4,4 @@ services:
   web:
    image: ${DOCKERHUB_USERNAME}/actions-app:main
    ports:
-    - "80:80"
+    - "80:5000"
