@@ -2,6 +2,6 @@ version: "3.18"
 
 services:
   web:
-   image: ${DOCKERHUB_USERNAME}/actions-app:main
+   image: ${DOCKERHUB_USERNAME}/actions-app:${GITHUB_SHA}
    ports:
     - "80:5000"
