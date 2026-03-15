@@ -1,7 +1,11 @@
 name: Deploy the Flask app
 
 on:
-    workflow_dispatch:
+    workflow_run:
+        workflows: [Docker-build-push]
+        types:
+            - completed
+            
 
 jobs:
     deploy:
@@ -15,3 +19,9 @@ jobs:
 
             - name: deploy with docker compose
               run: docker compose up -d --build
+    
+    on-failure:
+        runs-on: self-hosted
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        steps:
+          - run: echo 'The triggering workflow failed'
